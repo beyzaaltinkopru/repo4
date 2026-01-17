@@ -191,6 +191,46 @@ The daily view shows Citibike data as a literal heartbeat spiking and dropping w
         requestAnimationFrame(animateDuck);
     }
     animateDuck();
+    document.addEventListener('click', function (e) {
+    const overlay = document.getElementById('zoomOverlay');
+    const zoomedImg = document.getElementById('zoomedImg');
+
+    // 1. ZOOM AÇMA MANTIĞI
+    // Tıklanan öğe 'zoomable' sınıfına sahip mi veya bu sınıfı taşıyan bir öğenin içinde mi?
+    const target = e.target.closest('.zoomable');
+    
+    if (target) {
+        let imageSrc = '';
+        
+        // Eğer tıklanan doğrudan bir <img> ise src'sini al
+        if (target.tagName === 'IMG') {
+            imageSrc = target.src;
+        } 
+        // Eğer tıklanan bir div/konteynır ise içindeki <img>'yi bul (Logo durumu için)
+        else {
+            const innerImg = target.querySelector('img');
+            if (innerImg) imageSrc = innerImg.src;
+        }
+
+        if (imageSrc) {
+            zoomedImg.src = imageSrc;
+            overlay.classList.add('active');
+            document.body.style.overflow = 'hidden'; // Arka planı kilitle
+        }
+    }
+
+    // 2. ZOOM KAPATMA MANTIĞI (Siyah alana basınca siteye geri dön)
+    // Sadece siyah overlay alanına tıklandığında kapanması en sağlıklısıdır
+    else if (e.target.id === 'zoomOverlay') {
+        overlay.classList.remove('active');
+        document.body.style.overflow = 'auto'; // Kaydırmayı geri aç
+        // Küçük bir gecikmeyle resmi temizle ki kapanırken görüntü kaybolmasın
+        setTimeout(() => { zoomedImg.src = ''; }, 300);
+    }
+});
 </script>
+    <div id="zoomOverlay" class="zoom-overlay">
+    <img id="zoomedImg" src="" alt="Zoomed Image">
+</div>
 </body>
 </html>
