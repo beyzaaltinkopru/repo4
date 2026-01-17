@@ -8,18 +8,21 @@
 </head>
 <body>
     <div class="navbar">
-        <div class="logo">
-            <div class="logo-container">
-                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQYptgx8OdNYb-uNUfkV8khm1fgars6ro9WzA&s" alt="NYC City Rhythm Logo" class="logo-img">
-            </div>
-            <span>Long-boi</span>
+    <div class="logo">
+        <div class="logo-container" onclick="showPage('home')" style="cursor: pointer;">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQYptgx8OdNYb-uNUfkV8khm1fgars6ro9WzA&s" 
+                 alt="NYC City Rhythm Logo" 
+                 class="logo-img zoomable">
         </div>
-        <div class="nav-buttons">
-            <button class="nav-btn active" onclick="showPage('home')">Home</button>
-            <button class="nav-btn" onclick="showPage('project-details')">Project Details</button>
-            <button class="nav-btn" onclick="showPage('visualizations')">Visualizations</button>
-        </div>
+        <span onclick="showPage('home')" style="cursor: pointer;">Long-boi</span>
     </div>
+
+    <div class="nav-buttons">
+        <button class="nav-btn active" onclick="showPage('home')">Home</button>
+        <button class="nav-btn" onclick="showPage('project-details')">Project Details</button>
+        <button class="nav-btn" onclick="showPage('visualizations')">Visualizations</button>
+    </div>
+</div>
 
     <div class="background"></div>
 
